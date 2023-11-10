@@ -4,8 +4,7 @@ public class OrderAgnosticBinarySearch {
 	public static void main(String[] args) {
 //		int arr[] = {1,2,3,4,5,6,7,8,9};
 		int arr[] = {9,8,7,6,5,4,3,2,1,-1,-1,-2,-3,-4,-5,-6,-7};
-		
-		System.out.println(orderAgnosticBinarySearch(arr, 6));
+		System.out.println(orderAgnosticBinarySearch(arr, 9));
 		
 	}
 	public static int orderAgnosticBinarySearch(int arr[],int target) {
@@ -16,6 +15,7 @@ public class OrderAgnosticBinarySearch {
 		
 		while(start<=end) {
 			int mid = (start + end)/2;
+			System.out.println("midpoint = "+ mid);
 			
 			if(arr[mid]== target) {
 				return mid;
