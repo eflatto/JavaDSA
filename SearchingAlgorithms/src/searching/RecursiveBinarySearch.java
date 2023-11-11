@@ -8,7 +8,7 @@ public class RecursiveBinarySearch {
 	}
 
 	public static int recursiveBinarySearch(int[] arr,int start,int end,int target) {
-	
+		
 		if(start<= end) {
 			int mid = (start + end)/2;
 			
