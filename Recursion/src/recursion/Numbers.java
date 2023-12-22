@@ -22,15 +22,15 @@ public class Numbers {
 //		printNums(n-1);
 //		System.out.println(n);
 //	}
-//	static void printNums(int n) {
-//		
-//		if(n<0) {
-//			return;
-//			
-//		}
-//		System.out.println(n);
-//		printNums(n-1);
-//	}
+	static void printNums(int n) {
+		
+		if(n<0) {
+			return;
+			
+		}
+		System.out.println(n);
+		printNums(n-1);
+	}
 	
 	
 
