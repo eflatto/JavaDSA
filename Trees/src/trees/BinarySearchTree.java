@@ -1,58 +1,104 @@
 package trees;
 
-public class BinarySearchTree {
-	//Binary Trees every node has 0,1, or 2 children
-	//Children are referred to as left child and right child
-	
-	//BST can perform insertions, deletions, and retrievals in
-	//O(log n) time
-	
-	//Left child always has smaller value than parent
-	//Right child always has a larger value than its parent
-	
-	//everything on left of root is less than the value of the root 
-	//everything on the right of the root is greater than the value of the root
-	
-	private TreeNode root;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
-	public void insert(int value) {
+public class BinarySearchTree {
+	private TreeNode root;
+	
+	private class TreeNode{
+		private int data;
+		private TreeNode left;
+		private TreeNode right;
+		
+		public TreeNode(int data) {
+			this.data = data;
+		}
+	}
+	
+	public TreeNode insert(TreeNode root,int value) {
 		if(root == null) {
 			root = new TreeNode(value);
-		}else {
-			root.insert(value);
+			return root;
 		}
+		if(value< root.data) {
+			root.left = insert(root.left,value);
+		}
+		else if(value> root.data) {
+			root.right = insert(root.right,value);
+		}
+		return root;
 	}
-	public void traverseInOrder() {
-		if(root!=null) {
+	
+	public void inOrder(TreeNode root) {
+		if(root == null) {
+			return;
+		}
+		inOrder(root.left);
+		System.out.println(root.data);
+		inOrder(root.right);
+		
+	}
+	
+	public void levelOrder(TreeNode root) {
+		
+		if(root == null) {
+			return;
+		}
+		
+		Queue<TreeNode> queue = new LinkedList<>();
+		
+		queue.offer(root);
+		
+		while(!queue.isEmpty()) {
+			TreeNode current = queue.poll();
 			
-			root.traverseInOrder();
+			System.out.println(current.data);
+			
+			if(current.left != null) {
+				queue.add(current.left);
+			}
+			if(current.right != null) {
+				queue.add(current.right);
+			}
+			
 		}
+		
+	}
+	
+	public TreeNode search(TreeNode root,int key) {
+		if(root == null || root.data == key) {
+			return root;
+		}
+		if(key<root.data) {
+			return search(root.left,key);
+		}
+		else {
+			return search(root.right,key);
+			
+		}
+	}
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
+		BinarySearchTree bst = new BinarySearchTree();
+		
+		
+		bst.root = bst.insert(bst.root, 10);
+		bst.insert(bst.root, 5);
+		bst.insert(bst.root, 60);
+		bst.insert(bst.root, 20);
+		
+		
+		
+		bst.inOrder(bst.root);
 		
 		
 	}
-	public TreeNode get(int value) {
-		if(root != null) {
-			return root.get(value);
-		}
-		return null;
-	}
-	
-	public int min() {
-		if(root == null) {
-			return Integer.MIN_VALUE;
-		}else {
-			return root.min();
-		}
-	}
-	public int max() {
-		if(root == null) {
-			return Integer.MAX_VALUE;
-		}else {
-			return root.max();
-		}
-	}
-
-	
-
 	
 }
